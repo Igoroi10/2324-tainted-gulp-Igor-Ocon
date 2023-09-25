@@ -86,6 +86,25 @@ export default class Character{
                 console.log(`Stamina:       ${this.stamina}`);
                 console.log("-----------------------------------------");
 
+
+                if(this.health < 1){
+                    console.log(`${this.fullName} has died.`);
+                    stillInGame = false;
+                }
+
+                if(this.stamina < 1){
+                    console.log(`${this.fullName} has lost all his stamina. He feels completely exhausted`);
+                    stillInGame = false;
+                }
+
+                if(this.magick < 1){
+                    console.log(`${this.fullName} has depleted all his magicka. He shall be no more a mage.`);
+                    stillInGame = false;
+                }
+
+                if(currentPotion.name.includes("Sanity")){
+                    console.log(`${this.fullName} has found the ${currentPotion.name}. His mind is healed. Well done!!`)
+                }
             }
 
             
