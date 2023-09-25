@@ -19,9 +19,7 @@ const execute = async () => {
 
 
         const chosenPotionBag = potionBag.createPotions(dataJoseph.pouch_aged, cauldron);
-        const joseph = character.from(dataJoseph, chosenPotionBag);
-
-        // console.log(chosenPotionBag)
+        const joseph = character.from(dataJoseph, chosenPotionBag)
 
         showPotions(chosenPotionBag.potions)
 
@@ -52,6 +50,9 @@ function showCharacter(character){
     console.log(`Health:        ${character.health}`);
     console.log(`Magick:        ${character.magick}`);
     console.log(`Stamina:       ${character.stamina}`);
+    character.potions.forEach((element,index) => {
+        console.log(`Potion ${(index+1)}: ${element.name}`);
+    })
 
 }
 
