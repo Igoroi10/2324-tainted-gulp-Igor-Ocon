@@ -8,24 +8,41 @@ export default class PotionBag {
 
     createPotions(ingredients, cauldron){
         const usedIngredients = [];
-        const potionArray = ingredients.forEach(element => {
+        const potionArray = [];
 
-            ingredients.forEach(el => {
-                const newPotion = cauldron.createPotion(element, el);
+        // ingredients.forEach(element => {
 
-                if(!potionAlreadyCreated(el, usedIngredients))
-                    potionArray.push(newPotion);
+        //     ingredients.forEach(el => {
+        //         if(element.name !== el.name){
+        //             console.log("entra en creación de pociones")
+        //             if(!potionAlreadyCreated(el, usedIngredients)){
+        //                 const newPotion = cauldron.createPotion(element, el);
+        //                     potionArray.push(newPotion);
+        //             }
+        //         }
+        //     })
 
-            })
+        //     usedIngredients.push(element);
+        // });
 
-            usedIngredients.push(element);
-        });
+        for(let i = 0; i < ingredients.length; i++){
+            for(let l = i + 1; l < ingredients.length; l++){
+                const newPotion = cauldron.createPotion(ingredients[i], ingredients[l]);
+                potionArray.push(newPotion)
+            }
+        } 
 
-        console.log(potionArray);
+        return new PotionBag(potionArray);
     }
 
+}
 
-    potionAlreadyCreated(ingredient, array){
-        return array.some(arrayPotion => ingredient.name === arrayPotion.name );
-    }
+
+function potionAlreadyCreated(ingredient, array){
+    console.log(array);
+    console.log(array.some(arrayPotion => ingredient.name === arrayPotion.name));
+    // if(array.length === 0)
+    //     return false;
+    // else
+    return array.some(arrayPotion => ingredient.name === arrayPotion.name);
 }

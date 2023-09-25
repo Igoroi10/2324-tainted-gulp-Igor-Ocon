@@ -1,18 +1,26 @@
-import { getData } from "./service.mjs";
+import { getDataSilverFlame, getDataRustedRing } from "./service.mjs";
 import Ingredients from "./ingredients.mjs";
 import { Cauldron } from "./Cauldron.mjs";
 import PotionBag from "./PotionBag.mjs";
 
 const execute = async () => {
     try{
-        const dataIngredients = await getData();
+        const dataIngredients = await getDataSilverFlame();
+        const dataPlayers = await getDataRustedRing();
+        const dataJoseph = dataPlayers.players[0];
+
         
         const ingredients = Ingredients.load(dataIngredients);
-        showIngredients(ingredients);
+        
         const cauldron = new Cauldron (ingredients);
+        const potionBag = new PotionBag();
 
-        const potion1 = cauldron.createPotion("Bear Claws", "Bee");
 
+        const chosenPotionBag = potionBag.createPotions(dataJoseph.pouch_aged, cauldron);
+
+        // console.log(chosenPotionBag)
+
+        showPotions(chosenPotionBag.potions)
 
     }
     catch{
@@ -20,23 +28,16 @@ const execute = async () => {
     }
 }
 
-const showIngredients = (ingredients) =>{
-    ingredients.ingredients.forEach(ingredient => {
-        console.log(ingredient.name);
-        console.log(ingredient.effects);
-        console.log("--------------------------")
-        
+function showPotions(potionArray){
+    
+    potionArray.forEach(potion => {
+        console.log(`${potion.name}`);
+        console.log(`Value:              ${potion.value}`);
+        console.log(`Weight:             ${potion.weight}`);
+        console.log(`Time:               ${potion.time}`);
+        console.log("--------------------------");
     });
-    console.log("-------------------------------------")
-    console.log("-------------------------------------")
-}
 
-function showPotion(potion){
-    console.log(`${potion.name}`);
-    console.log(`Value:              ${potion.value}`);
-    console.log(`Weight:             ${potion.weight}`);
-    console.log(`Time:               ${potion.time}`);
-    console.log("--------------------------");
 }
 
 execute();
