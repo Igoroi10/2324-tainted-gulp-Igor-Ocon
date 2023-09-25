@@ -21,9 +21,11 @@ const execute = async () => {
         const chosenPotionBag = potionBag.createPotions(dataJoseph.pouch_aged, cauldron);
         const joseph = character.from(dataJoseph, chosenPotionBag)
 
-        showPotions(chosenPotionBag.potions)
+        // showPotions(chosenPotionBag.potions)
 
-        showCharacter(joseph);
+        // showCharacter(joseph);
+
+        joseph.drinkEmAll()
 
     }
     catch{
