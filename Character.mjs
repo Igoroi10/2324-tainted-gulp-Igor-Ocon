@@ -4,13 +4,12 @@ export default class Character{
         this.fullName       = fullName;
         this.health         = health;
         this.magick         = magick;
-        this.staminta       = stamina;
+        this.stamina       = stamina;
         this.potions        = potions;
     }
 
     from(playerData, potions){
-        console.log(playerData.name)
         const fullName = `${playerData.name} the ${playerData.class}`;
-        return new Character (fullName, playerData.health, playerData.magick, playerData.stamina, potions)
+        return new Character (fullName, playerData.health, playerData.magick, playerData.stamina, potions.potions)
     }
 }
