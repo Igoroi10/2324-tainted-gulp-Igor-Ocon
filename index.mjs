@@ -2,6 +2,7 @@ import { getDataSilverFlame, getDataRustedRing } from "./service.mjs";
 import Ingredients from "./ingredients.mjs";
 import { Cauldron } from "./Cauldron.mjs";
 import PotionBag from "./PotionBag.mjs";
+import Character from "./Character.mjs";
 
 const execute = async () => {
     try{
@@ -14,13 +15,17 @@ const execute = async () => {
         
         const cauldron = new Cauldron (ingredients);
         const potionBag = new PotionBag();
+        const character = new Character();
 
 
         const chosenPotionBag = potionBag.createPotions(dataJoseph.pouch_aged, cauldron);
+        const joseph = character.from(dataJoseph, chosenPotionBag);
 
         // console.log(chosenPotionBag)
 
         showPotions(chosenPotionBag.potions)
+
+        showCharacter(joseph);
 
     }
     catch{
@@ -29,7 +34,7 @@ const execute = async () => {
 }
 
 function showPotions(potionArray){
-    
+
     potionArray.forEach(potion => {
         console.log(`${potion.name}`);
         console.log(`Value:              ${potion.value}`);
@@ -37,6 +42,16 @@ function showPotions(potionArray){
         console.log(`Time:               ${potion.time}`);
         console.log("--------------------------");
     });
+    console.log("-------------------------------------------------------");
+    console.log("-------------------------------------------------------");
+}
+
+function showCharacter(character){
+    console.log(character.fullName);
+    console.log("--------------------------");
+    console.log(`Health:        ${character.health}`);
+    console.log(`Magick:        ${character.magick}`);
+    console.log(`Stamina:       ${character.stamina}`);
 
 }
 
