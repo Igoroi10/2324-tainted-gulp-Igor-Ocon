@@ -1,6 +1,6 @@
 
 
-class PotionBag {
+export default class PotionBag {
 
     constructor (potions){
         this.potions    = potions;
@@ -25,7 +25,7 @@ class PotionBag {
     }
 
 
-potionAlreadyCreated(ingredient, array){
-    return array.some(arrayPotion => ingredient.name === arrayPotion.name );
-}
+    potionAlreadyCreated(ingredient, array){
+        return array.some(arrayPotion => ingredient.name === arrayPotion.name );
+    }
 }
